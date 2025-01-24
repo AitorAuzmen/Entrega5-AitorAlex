@@ -45,19 +45,19 @@ $conn->close();
              taulaBirkargatu();
         });
 
-         setInterval(taulaBirkargatu(), 1000);
+        setInterval(taulaBirkargatu, 1000);
 
     });
 
     function taulaBirkargatu() {
 
         $.ajax({
-            url : "moto.php",
-            type: "GET",
-            data: {akzioa : "lortuMotoak"}
+            url : "moto.php", 
+            method: "GET",       // Beti jarri behar da
+            data: {akzioa : "lortuMotoak"} // lortu motoaken jarritakoa egiten du
         })
             .done(function (bueltanDatorrenInformazioa) {
-
+// arraya string en bihurtzen du 
                 var info = JSON.parse(bueltanDatorrenInformazioa);
                 if (info.kopurua > 0) {
                     $(".zerrenda").html("");
@@ -69,14 +69,15 @@ $conn->close();
 
 
                     for (var i = 0; i < info.kopurua; i++) {
-                    $(".zerrenda").html("");
-                    $(".zerrenda").append("<tr>");
-                    $(".zerrenda").append("<th> Postua" + info[i].Postua , "</th>");
-                    $(".zerrenda").append("<th> Izena" + info[i].Dortsala , "</th>");
-                    $(".zerrenda").append("<th> Dortsala" + info[i].Izena , "</th>");
-                    $(".zerrenda").append("</tr>");
+                        // informazioa agertzen da
+                        $(".zerrenda").append("<tr>");
+                        $(".zerrenda").append("<th> " + info[i].Postua , "</th>");
+                        $(".zerrenda").append("<th> " + info[i].Dortsala , "</th>");
+                        $(".zerrenda").append("<th> " + info[i].Izena , "</th>");
+                        $(".zerrenda").append("</tr>");
                     }
                 } else {
+
                     alert("Ez da elementurik kargatu");
                 }
 
