@@ -6,7 +6,7 @@ if ($_GET["akzioa"] == "lortuMotoak") {
 
     $conn = konexioaSortu();
 
-    $sql = "SELECT * FROM motoclassification";
+    $sql = "SELECT * FROM 8ataza";
     $result = $conn->query($sql);
     $ikasleak = [];
 
